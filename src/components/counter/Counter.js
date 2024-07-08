@@ -1,29 +1,49 @@
 import React, {Component} from "react";
 import './Counter.css'
 
-class Counter extends Component{
+class Counter extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            count : 0
-        }
-        this.increment = this.increment.bind(this);
-    }
-    render(){
-        
-        return(
-            <div className="counter">
-                <h2>Counter</h2>
-                <button className="button" onClick={this.increment}>+1</button>
-                <span className="count">{this.state.count}</span>
+    render() {
+        return (
+            <div className="App">
+                {/*<LearningComponent/>*/}
+                <CounterButton howMany={1}/>
+                <CounterButton howMany={5}/>
             </div>
         )
     }
+}
 
-    increment(){
-        console.log("increment");
-        this.setState({count: this.state.count + 1});
+class CounterButton extends Component {
+
+    constructor() {
+        super()
+        this.state = {
+            count: 0
+        }
+    }
+
+    render = () => {
+        return (
+            <div className="counter">
+                <button className="button" onClick={this.decrement}>-{this.props.howMany}</button>
+                <button className="button" onClick={this.increment}>+{this.props.howMany}</button>
+                <div className="count">{this.state.count}</div>
+            </div>
+
+        )
+    }
+
+    increment = () => {
+        this.setState({
+            count: this.state.count + this.props.howMany
+        });
+    }
+
+    decrement = () => {
+        this.setState({
+            count: this.state.count - this.props.howMany
+        });
     }
 }
 
